@@ -5,12 +5,12 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy requirements file and install dependencies
-COPY requirements.txt requirements.txt
+COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the project files
-COPY . .
-COPY original_data.json data.json
+COPY backend/ .
+COPY backend/original_data.json data.json
 
 # Make the entrypoint script executable
 RUN chmod +x entrypoint.sh
