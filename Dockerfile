@@ -1,9 +1,9 @@
 # Etapa 1: Build do Angular
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
+COPY website/package*.json ./
 RUN npm ci
-COPY . .
+COPY website/ .
 RUN npm run build
 
 # Etapa 2: Servir com nginx
