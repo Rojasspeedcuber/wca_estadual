@@ -40,7 +40,7 @@ export class AuthenticationService {
 
   login(): void {
     if (this.api_code == "" || this.api_code == undefined) {
-      let redirectUrl = `https://www.worldcubeassociation.org/oauth/authorize?client_id=OS6jVGAcxX_MwpLawxS1hRq8IVNEfu-FAthO72ARdyw&redirect_uri=${environment.APP_URL}&response_type=code&scope=public`;
+      let redirectUrl = `https://www.worldcubeassociation.org/oauth/authorize?client_id=a7HLX63kfYV6gvT9l8oPhOpCS3EPNq9iH4h6DtXYRR8&redirect_uri=${encodeURIComponent(environment.APP_URL)}&response_type=code&scope=public`;
       sessionStorage.setItem("is_getting_token", "true");
       window.location.href = redirectUrl;
     }
