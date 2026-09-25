@@ -11,7 +11,7 @@ from constants import KINDS, EVENTS
 
 logger = logging.getLogger(__name__)
 
-ROBIN_URL = 'https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api/'
+ROBIN_URL = 'https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/refs/heads/v1/'
 RANK_ENDPOINT = 'rank/BR/'
 PERSON_ENDPOINT = 'persons/'
 
