@@ -9,7 +9,7 @@ from markupsafe import escape
 from datetime import datetime
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+
 
 from constants import STATES
 
@@ -18,7 +18,7 @@ logging.basicConfig(filename='api.log', level=logging.INFO)
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 db = SQLAlchemy(app)
-CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 CLIENT_ID = environ.get('API_CLIENT_ID')
 CLIENT_SECRET = environ.get('API_CLIENT_SECRET')
@@ -82,7 +82,7 @@ def create_user(wca_id):
 
     user_wca_id = get_wca_id_from_token(access_token) if access_token != ADM_TOKEN else wca_id
     if wca_id != user_wca_id:
-        logger.warning(f'CREATE_USER: Route wca_id ({wca_id}) different from wca/me ({user_wca_id}). Access token: {access_token}')
+        logger.warning('Route wca_id (%s) different from wca/me (%s).', wca_id, user_wca_id)
         return {
             'code': USER_NOT_CREATED,
             'message': f'Usuário informado ({wca_id}) diferente do usuário logado na WCA.'
@@ -125,7 +125,7 @@ def update_user(wca_id):
 
     user_wca_id = get_wca_id_from_token(access_token) if access_token != ADM_TOKEN else wca_id
     if wca_id != user_wca_id:
-        logger.warning(f'CREATE_USER: Route wca_id ({wca_id}) different from wca/me ({user_wca_id}). Access token: {access_token}')
+        logger.warning('Route wca_id (%s) different from wca/me (%s).', wca_id, user_wca_id)
         return {
             'code': USER_NOT_CREATED,
             'message': f'Usuário informado ({wca_id}) diferente do usuário logado na WCA.'
@@ -158,7 +158,6 @@ def update_user(wca_id):
 
 
 @app.post('/token/<code>')
-@cross_origin()
 def get_token(code):
     data = request.get_json()
 
